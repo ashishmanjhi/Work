@@ -30,7 +30,10 @@ public class Main {
 			System.out.println("\n");
 			
 			//Taking out an item from the Refrigerator by item id.
-			System.out.println("item taken out by user "+refrigerator.getItemById(102));
+			System.out.println("item taken out by the user by item id "+refrigerator.getItemById(102));
+			
+			//taking out an item from the Refrigerator by item name
+			System.out.println("item taken out by the user by item name "+refrigerator.getItemByName("cake"));
 			
 			System.out.println("\n");
 			

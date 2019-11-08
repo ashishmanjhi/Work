@@ -5,11 +5,11 @@ import java.util.List;
 
 //Refrigerator Model
 public class Refrigerator {
-	
-	//List of shelves inside the refrigerator
+
+	// List of shelves inside the refrigerator
 	List<Shelf> shelves = new ArrayList<Shelf>();
 
-	//Function to add item inside the refrigerator
+	// Function to add item inside the refrigerator
 	public int addItem(Item item) throws Exception {
 		int id = -1;
 		for (Shelf shelf : shelves) {
@@ -26,8 +26,7 @@ public class Refrigerator {
 		return id;
 	}
 
-	
-	//Function to get an item from the refrigerator by item id.
+	// Function to get an item from the refrigerator by item id.
 	public Item getItemById(int id) throws Exception {
 		Item itemRemoved = null;
 		for (Shelf shelf : shelves) {
@@ -35,49 +34,61 @@ public class Refrigerator {
 			for (Item item : itemList) {
 				if (item.id == id) {
 					itemRemoved = item;
+					shelf.remainingCapacity += itemRemoved.capacity;
 					itemList.remove(item);
 					break;
 				}
-				else {
-					throw new Exception("item not found");
-				}
 			}
+			
+		}
+		if (itemRemoved == null) {
+
+			throw new ItemNotFoundException("Item not found by id: " + id);
 		}
 		return itemRemoved;
 	}
 
-	//Function to get an item from the refrigerator by item name.
+	// Function to get an item from the refrigerator by item name.
 	public Item getItemByName(String name) throws Exception {
 		Item itemRemoved = null;
+		int no = 0;
 		for (Shelf shelf : shelves) {
 			List<Item> itemList = shelf.items;
 			for (Item item : itemList) {
 				if (item.name == name) {
+					no++;
+					System.out.println(no);
 					itemRemoved = item;
+					shelf.remainingCapacity += itemRemoved.capacity;
 					itemList.remove(item);
 					break;
 				}
-				else {
-					throw new Exception("item not found");
-				}
-			}
+			}			
 		}
-		return itemRemoved; 
+		if (itemRemoved == null) {
+
+			throw new ItemNotFoundException("Item not found by name: " + name);
+		}
+		return itemRemoved;
 	}
-	
-	
-	
-	
-	
+
 	@Override
 	public String toString() {
 		return "Refrigerator [shelves=" + shelves + ", maxNoOfShelves=" + shelves.size() + "]";
 	}
 
-	//Exception class
+	// Exception class for space
 	@SuppressWarnings("serial")
 	public class NotEnoughSpaceException extends Exception {
 		public NotEnoughSpaceException(String msg) {
+			super(msg);
+		}
+	}
+
+	//Exception class for item not found
+	@SuppressWarnings("serial")
+	public class ItemNotFoundException extends Exception {
+		public ItemNotFoundException(String msg) {
 			super(msg);
 		}
 	}
