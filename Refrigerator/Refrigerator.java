@@ -3,10 +3,13 @@ package com.refrigerator;
 import java.util.ArrayList;
 import java.util.List;
 
+//Refrigerator Model
 public class Refrigerator {
+	
+	//List of shelves inside the refrigerator
 	List<Shelf> shelves = new ArrayList<Shelf>();
-	int maxNoOfShelves = 4;
 
+	//Function to add item inside the refrigerator
 	public int addItem(Item item) throws Exception {
 		int id = -1;
 		for (Shelf shelf : shelves) {
@@ -23,6 +26,7 @@ public class Refrigerator {
 		return id;
 	}
 
+	//Function to get an item from the refrigerator by item id.
 	public Item getItemById(int itemId) throws Exception {
 		Item itemRemoved = null;
 		for (Shelf shelf : shelves) {
@@ -33,6 +37,9 @@ public class Refrigerator {
 					itemList.remove(item);
 					break;
 				}
+				else {
+					throw new Exception("item not found");
+				}
 			}
 		}
 		return itemRemoved;
@@ -40,9 +47,10 @@ public class Refrigerator {
 
 	@Override
 	public String toString() {
-		return "Refrigerator [shelves=" + shelves + ", maxNoOfShelves=" + maxNoOfShelves + "]";
+		return "Refrigerator [shelves=" + shelves + ", maxNoOfShelves=" + shelves.size() + "]";
 	}
 
+	//Exception class
 	@SuppressWarnings("serial")
 	public class NotEnoughSpaceException extends Exception {
 		public NotEnoughSpaceException(String msg) {
@@ -50,15 +58,9 @@ public class Refrigerator {
 		}
 	}
 
-	public Refrigerator() {
-		for (int i = 0; i < this.maxNoOfShelves; i++) {
-			Shelf shelf = new Shelf(i, i);
-			shelves.add(shelf);
-		}
-	}
-
-	public Refrigerator(List<Shelf> shelves2) {
-		this.shelves = shelves2;
+	// Refrigerator Constructor
+	public Refrigerator(List<Shelf> shelves) {
+		this.shelves = shelves;
 	}
 
 }

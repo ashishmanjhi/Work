@@ -1,10 +1,15 @@
 package com.refrigerator;
 
+// Item Model
 public class Item {
+	
+	//Item id ,name and a random capacity
 	int id;
 	String name;
 	Float capacity = (float) (Math.random()*10)+1;
 
+	
+	// Getter and Setters
 	public int getId() {
 		return id;
 	}
@@ -24,6 +29,19 @@ public class Item {
 	public Item(int id, String name) {
 		this.id = id;
 		this.name = name;
+	}
+	
+
+	//Constructor for Item model
+	public Item(int id, String name, Float capacity) {
+		this.id = id;
+		this.name = name;
+		this.capacity = capacity;
+	}
+	
+	//Default Constructor
+	public Item()
+	{		
 	}
 
 	@Override
