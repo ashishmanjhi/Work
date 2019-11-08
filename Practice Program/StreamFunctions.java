@@ -83,10 +83,17 @@ public class StreamFunctions {
 		List<String> sortByLength=nameList.stream().sorted(comp).collect(Collectors.toList());
 		System.out.println("Names sorted by length ="+ sortByLength);
 		
+		System.out.println("\n");
 		
 		//Convert List to Map function 
 		ListToMap toMap=new ListToMap();
 		toMap.listToMap();
+		
+		System.out.println("\n");
+		
+		//Sort an Item class using item capacity
+		Item item=new Item();
+		item.printItems();
 		
 	}
 
