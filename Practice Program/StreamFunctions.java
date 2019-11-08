@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Stream {
+public class StreamFunctions {
 	
 	public static void main(String[] args) {
 		
@@ -84,7 +84,9 @@ public class Stream {
 		System.out.println("Names sorted by length ="+ sortByLength);
 		
 		
-		
+		//Convert List to Map function 
+		ListToMap toMap=new ListToMap();
+		toMap.listToMap();
 		
 	}
 
