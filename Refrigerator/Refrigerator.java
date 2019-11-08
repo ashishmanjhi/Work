@@ -26,13 +26,14 @@ public class Refrigerator {
 		return id;
 	}
 
+	
 	//Function to get an item from the refrigerator by item id.
-	public Item getItemById(int itemId) throws Exception {
+	public Item getItemById(int id) throws Exception {
 		Item itemRemoved = null;
 		for (Shelf shelf : shelves) {
 			List<Item> itemList = shelf.items;
 			for (Item item : itemList) {
-				if (item.id == itemId) {
+				if (item.id == id) {
 					itemRemoved = item;
 					itemList.remove(item);
 					break;
@@ -45,6 +46,29 @@ public class Refrigerator {
 		return itemRemoved;
 	}
 
+	//Function to get an item from the refrigerator by item name.
+	public Item getItemByName(String name) throws Exception {
+		Item itemRemoved = null;
+		for (Shelf shelf : shelves) {
+			List<Item> itemList = shelf.items;
+			for (Item item : itemList) {
+				if (item.name == name) {
+					itemRemoved = item;
+					itemList.remove(item);
+					break;
+				}
+				else {
+					throw new Exception("item not found");
+				}
+			}
+		}
+		return itemRemoved; 
+	}
+	
+	
+	
+	
+	
 	@Override
 	public String toString() {
 		return "Refrigerator [shelves=" + shelves + ", maxNoOfShelves=" + shelves.size() + "]";
