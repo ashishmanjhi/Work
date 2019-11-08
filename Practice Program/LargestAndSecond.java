@@ -48,7 +48,7 @@ public static	int secondHighest(int a[]) {
 		return max;
 	}
 	
-	//Find the second Largest no using stream
+	//Find the Largest no using stream
 	public static int largestStream() {
 		 List<Integer> list = Arrays.asList(2, 4, 1, 3, 7, 5, 9, 6, 8);
 		 
@@ -57,6 +57,36 @@ public static	int secondHighest(int a[]) {
 		} 
 
 	
+	// Find the second Largest no without sorting
+	public static int printSecondLargest(int arr[])  throws Exception
+	 { 
+		 int size=arr.length;
+	     int i, first, second; 
+	     if (size < 2) 
+	     { 
+	        throw new Exception("less than two number in the array " +arr[size-1]); 
+	     } 
+	    
+	     first = second = Integer.MIN_VALUE; 
+	     for (i = 0; i < size ; i++) 
+	     { 
+	       
+	         if (arr[i] > first) 
+	         { 
+	             second = first; 
+	             first = arr[i]; 
+	         } 
+
+	         else if (arr[i] > second && arr[i] != first) 
+	             second = arr[i]; 
+	     } 
+	       
+	     if (second == Integer.MIN_VALUE) 
+	          return 0;
+	     else
+	          return second; 
+	 } 
+	
 	
 	public static void main(String[] args) {
 		
@@ -64,5 +94,10 @@ public static	int secondHighest(int a[]) {
 		System.out.println(getMaxElement(a));
 		System.out.println(secondHighest(a));
 		System.out.println(largestStream());
+		try {
+			System.out.println(printSecondLargest(a));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
