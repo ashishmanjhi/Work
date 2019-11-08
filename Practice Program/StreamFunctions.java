@@ -83,6 +83,9 @@ public class Stream {
 		List<String> sortByLength=nameList.stream().sorted(comp).collect(Collectors.toList());
 		System.out.println("Names sorted by length ="+ sortByLength);
 		
+		
+		
+		
 	}
 
 }

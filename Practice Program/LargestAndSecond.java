@@ -7,7 +7,7 @@ import java.util.Optional;
 public class LargestAndSecond {
 
 	// Program for Second Largest no using sorting
-public static	int secondHighest(int a[]) {
+public static	int secondHighest(int a[])throws Exception {
 
 	int sh=0;
 	if (a.length != 0) {
@@ -26,15 +26,14 @@ public static	int secondHighest(int a[]) {
 	}
 	else
 	{
-		sh=0;
-		System.out.println("no element");
+		throw new Exception("no element");
 	}
 		return sh;
 	}
 
 
 // Program for  Largest no
-	public static int getMaxElement(int input[]) {
+	public static int getMaxElement(int input[])throws Exception{
 		int max = 0;
 		if (input.length != 0) {
 			max = input[0];
@@ -44,6 +43,9 @@ public static	int secondHighest(int a[]) {
 				}
 			}
 
+		}
+		else {
+			throws new Exception("no element")
 		}
 		return max;
 	}
@@ -88,6 +90,7 @@ public static	int secondHighest(int a[]) {
 	 } 
 	
 	
+	// Driver Program
 	public static void main(String[] args) {
 		
 		int a[] = {22,14,55,77};

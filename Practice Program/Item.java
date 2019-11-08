@@ -5,17 +5,24 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//Item Model
 public class Item {
+
+	//Item variables
 	private int id;
 	private String name;
 	private int size;
 	
+
+	//Item Constructor
 	public Item(int id, String name, int size) {
 		this.id = id;
 		this.name = name;
 		this.size = size;
 	}
 
+
+//Getter and Setter
 	public int getId() {
 		return id;
 	}
@@ -46,6 +53,8 @@ public class Item {
 		return "Item [id=" + id + ", name=" + name + ", size=" + size + "]";
 	}
 
+
+//Main program 
 	public static void main(String[] args) {
 		
 		List<Item> items=Arrays.asList(
@@ -55,7 +64,7 @@ public class Item {
 				new Item(103,"Bread",4),
 				new Item(104,"Eggs",2));
 		
-		//Sorting the item list in ascending order by size using stream
+		//Sorting the item list in ascending order by item size using stream
 		List<Item> itemList=items.stream().sorted(Comparator.comparingInt(Item::getSize)).collect(Collectors.toList()); 
 		itemList.forEach(System.out::println);
 	}
