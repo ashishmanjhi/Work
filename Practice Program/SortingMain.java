@@ -29,22 +29,22 @@ public class SortingMain {
 	      //Heap Sort object
 	        HeapSort heapSort = new HeapSort(); 
 	        heapSort.sort(arr); 
-	        System.out.println("Heap Sorted array is:"); 
+	        System.out.println("\nHeap Sorted array is:"); 
 	        printArray(arr); 
 	        
 	        
 	      //Quick Sort object
 	        QuickSort quickSort =new QuickSort(); 
 	        quickSort.sort(arr, 0, arr.length-1); 
-	        System.out.println("Quick sorted array:"); 
+	        System.out.println("\nQuick sorted array:"); 
 	        printArray(arr); 
 	        
 	        //Count Sort object
 	        CountSort countSort=new CountSort();
 	        countSort.sort(arr1);
-	        System.out.println("Count sorting array is:");
+	        System.out.println("\nCount sorting array is:");
 	        for (int i=0; i<arr1.length; ++i) 
-	            System.out.print(arr1[i]);
+	            System.out.println(arr1[i]);
 	        
 	        //Shell Sort object
 	        ShellSort shellSort=new ShellSort();
@@ -56,6 +56,15 @@ public class SortingMain {
 	        BucketSort bucketSort=new BucketSort();  
 	        System.out.println("\nBucket sort array is:");
 	        System.out.println(Arrays.toString(bucketSort.sort(arr, bucketSort.maxvalue(arr))));
+	
+	        
+	        //Radix Sort object
+	        RadixSort radixSort=new RadixSort();
+	        System.out.println("\nRadix sort array is:");
+	        radixSort.sort(arr);
+	        printArray(arr);
+	
+	
 	}
 
 }
