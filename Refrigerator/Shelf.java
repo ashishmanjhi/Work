@@ -11,7 +11,11 @@ public class Shelf {
 	float remainingCapacity;
 	List<Item> items=new ArrayList<Item>();
 
-	// Shelf Constructor
+	
+	/**
+	 * @param id
+	 * @param remainingCapacity
+	 */
 	public Shelf(int id,float remainingCapacity) {
 		this.id = id;
 		this.remainingCapacity=remainingCapacity;
@@ -19,18 +23,30 @@ public class Shelf {
 	
 
 	// Getter and Setter
+	/**
+	 * @return Shelf id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @param id
+	 */
 	public void setShelfId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return Shelf remaining space
+	 */
 	public float getRemainingCapacity() {
 		return remainingCapacity;
 	}
 
+	/**
+	 * @param Shelf remainingCapacity
+	 */
 	public void setRemainingCapacity(float remainingCapacity) {
 		this.remainingCapacity = remainingCapacity;
 	}

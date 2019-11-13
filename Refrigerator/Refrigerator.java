@@ -1,32 +1,90 @@
 package com.refrigerator;
 
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
+import java.util.stream.Collectors;
+
+
 
 //Refrigerator Model
+
+/**
+ * @author Ashish.manjhi
+ *
+ */
+
 public class Refrigerator {
 
 	// List of shelves inside the refrigerator
 	List<Shelf> shelves = new ArrayList<Shelf>();
 
-	// Function to add item inside the refrigerator
+	
+	/**
+	 * 
+	 * 
+	 * @param Item object 
+	 * @return Shelf id
+	 * @throws No space Exception
+	 */
 	public int addItem(Item item) throws Exception {
 		int id = -1;
 		for (Shelf shelf : shelves) {
-			if (shelf.remainingCapacity > item.capacity) {
+			if (shelf.remainingCapacity >= item.capacity) {
 				shelf.items.add(item);
 				shelf.remainingCapacity -= item.capacity;
 				id = shelf.id;
 				break;
-			}
+			}		
 		}
+		DoubleSummaryStatistics stats = shelves.stream()
+			      .collect(Collectors.summarizingDouble(Shelf::getRemainingCapacity));
+		
 		if (id == -1) {
-			throw new NotEnoughSpaceException("Not Enough Space.");
+			if((stats.getSum())>=item.capacity) {
+				for (Shelf shelf : shelves) {
+					for(Item i: shelf.items) {
+						if(rearrange(i,shelf.id)==true) {
+							shelf.remainingCapacity+=i.capacity;
+						id=addItem(i);
+						}
+					}
+				}
+				
+			}
+			else
+		throw new NotEnoughSpaceException("Not Enough Space."+item.capacity);
 		}
 		return id;
 	}
+	
+	
+	
+	/**
+	 * @param Item object
+	 * @param shelfid
+	 * @return boolean value 
+	 */
+	public boolean rearrange(Item item,int shelfid) {
+		boolean out=true;
+		for (Shelf shelf : shelves) {
+		if(item.capacity<=shelf.remainingCapacity && shelfid!=shelf.id) {
+			shelf.items.add(item);
+		shelf.remainingCapacity -= item.capacity;
+		break;
+		}
+		else
+			out=false;
+	}
+		return out;
+	}
 
-	// Function to get an item from the refrigerator by item id.
+	
+	/**
+	 * @param Item id
+	 * @return Item selected by user by id
+	 * @throws Exception Item Not Found
+	 */
 	public Item getItemById(int id) throws Exception {
 		Item itemRemoved = null;
 		for (Shelf shelf : shelves) {
@@ -48,7 +106,12 @@ public class Refrigerator {
 		return itemRemoved;
 	}
 
-	// Function to get an item from the refrigerator by item name.
+	
+	/**
+	 * @param Item name
+	 * @return Item selected by user by name
+	 * @throws Exception Item Not Found
+	 */
 	public Item getItemByName(String name) throws Exception {
 		Item itemRemoved = null;
 		int no = 0;
@@ -93,7 +156,10 @@ public class Refrigerator {
 		}
 	}
 
-	// Refrigerator Constructor
+	
+	/**
+	 * @param contain List of shelves 
+	 */
 	public Refrigerator(List<Shelf> shelves) {
 		this.shelves = shelves;
 	}

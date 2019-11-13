@@ -10,22 +10,38 @@ public class Item {
 
 	
 	// Getter and Setters
+	/**
+	 * @return Item id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @param Item id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * @return Item name
+	 */
 	public String getName() {
 		return name;
 	}
 
+	/**
+	 * @param Item name
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
 
+	/**
+	 * @param Item id
+	 * @param Item name
+	 */
 	public Item(int id, String name) {
 		this.id = id;
 		this.name = name;
@@ -33,6 +49,11 @@ public class Item {
 	
 
 	//Constructor for Item model
+	/**
+	 * @param Item id
+	 * @param Item name
+	 * @param Item capacity
+	 */
 	public Item(int id, String name, Float capacity) {
 		this.id = id;
 		this.name = name;

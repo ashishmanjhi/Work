@@ -5,6 +5,9 @@ import java.util.List;
 
 // Main program
 public class Main {
+	/**
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		// List of shelves present inside the Refrigerator
@@ -23,6 +26,10 @@ public class Main {
 			refrigerator.addItem(new Item(102, "apple"));
 			refrigerator.addItem(new Item(103, "cake"));
 			refrigerator.addItem(new Item(104, "drink"));
+			refrigerator.addItem(new Item(105, "beer"));
+			refrigerator.addItem(new Item(106, "Banana"));
+			refrigerator.addItem(new Item(107, "Mango"));
+			refrigerator.addItem(new Item(108, "Ice"));
 			
 			//Items inside the Refrigerator.
 			System.out.println("Items inside the refrigerator : "+refrigerator);
@@ -30,10 +37,10 @@ public class Main {
 			System.out.println("\n");
 			
 			//Taking out an item from the Refrigerator by item id.
-			System.out.println("item taken out by the user by item id "+refrigerator.getItemById(102));
+			//System.out.println("item taken out by the user by item id "+refrigerator.getItemById(102));
 			
 			//taking out an item from the Refrigerator by item name
-			System.out.println("item taken out by the user by item name "+refrigerator.getItemByName("cake"));
+		//	System.out.println("item taken out by the user by item name "+refrigerator.getItemByName("cake"));
 			
 			System.out.println("\n");
 			
