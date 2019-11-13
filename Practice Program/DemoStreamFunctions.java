@@ -1,13 +1,20 @@
 package com.ref;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 import java.util.Set;
 import java.util.Vector;
+import java.util.function.BinaryOperator;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -190,5 +197,106 @@ public class DemoStreamFunctions {
 	}
 	//--------------------------------------------------------------------------------------------------
 
-		//
+		//When Stream GroupingBy and then GetMap
+	public void whenStreamGroupingBy_thenGetMap(List<Computer> compList) {
+	    Map<Character, List<Computer>> groupByAlphabet = compList.stream().collect(
+	      Collectors.groupingBy(e -> new Character(e.getName().charAt(0))));
+
+	    System.out.println("\nGroupingBy function :");
+   System.out.println((groupByAlphabet.get('D')));
+   System.out.println(groupByAlphabet.get('D').get(0));
+   System.out.println(groupByAlphabet.get('D').get(0).getName());
+	}
+	//--------------------------------------------------------------------------------------------------
+
+	// When Stream Mapping and then GetMap
+	public void whenStreamMapping_thenGetMap(List<Computer> compList) {
+	    Map<Character, List<Integer>> idGroupedByAlphabet = compList.stream().collect(
+	      Collectors.groupingBy(e -> new Character(e.getName().charAt(0)),
+	        Collectors.mapping(Computer::getId, Collectors.toList())));
+
+	    System.out.println("\nMapping function :");
+	    System.out.println(idGroupedByAlphabet.get('A'));
+	    System.out.println(idGroupedByAlphabet.get('D').get(0));
+	    System.out.println(idGroupedByAlphabet.get('H'));
+	}
+	//--------------------------------------------------------------------------------------------------
+
+		//When Stream Reducing and then GetValue
+	public void whenStreamReducing_thenGetValue(List<Computer> compList) {
+	    Double percentage = 10.0;
+	    Double priceIncrOverhead = compList.stream().collect(Collectors.reducing(
+	        0.0, e -> e.getPrice() * percentage / 100, (s1, s2) -> s1 + s2));
+
+	    System.out.println("\nReducing Function :"+priceIncrOverhead);
+	}
+	//--------------------------------------------------------------------------------------------------	
+	
+	// When Stream Grouping And Reducing then GetMap
+	public void whenStreamGroupingAndReducing_thenGetMap(List<Computer> compList) {
+	    Comparator<Computer> byNameLength = Comparator.comparing(Computer::getName);
+	    
+	    //we find the computer with the longest name
+	    Map<Character, Optional<Computer>> longestNameByAlphabet = compList.stream().collect(
+	      Collectors.groupingBy(e -> new Character(e.getName().charAt(0)),
+	        Collectors.reducing(BinaryOperator.maxBy(byNameLength))));
+
+	    System.out.println("\nStream Grouping And Reducing function by initials:");
+	    System.out.println(longestNameByAlphabet.get('A').get().getName());
+	    System.out.println(longestNameByAlphabet.get('D').get().getName());
+	    System.out.println(longestNameByAlphabet.get('H').get().getName());
+	}
+	//--------------------------------------------------------------------------------------------------	
+	
+		//	when Generate Stream then Get InfiniteStream
+	public void whenGenerateStream_thenGetInfiniteStream() {
+		System.out.println("\nGenerate Stream of random no :");
+	    Stream.generate(Math::random)
+	      .limit(5)
+	      .forEach(System.out::println);
+	}
+	//--------------------------------------------------------------------------------------------------	
+	
+		//when Iterate Stream  then Get InfiniteStream
+	public void whenIterateStream_thenGetInfiniteStream() {
+	    Stream<Integer> evenNumStream = Stream.iterate(2, i -> i * 2);
+
+	    List<Integer> collect = evenNumStream
+	      .limit(6)
+	      .collect(Collectors.toList());
+
+	   System.out.println("\n"+collect);
+	}
+	//--------------------------------------------------------------------------------------------------	
+	
+			//when Stream ToFile then GetFile()
+	
+	public void whenStreamToFile_thenGetFile() throws IOException {
+	
+	    String[] words = {
+	      "hello", 
+	      "refer",
+	      "world",
+	      "level"
+	    };
+	    
+	    try (PrintWriter pw = new PrintWriter(
+	      Files.newBufferedWriter(Paths.get("C:\\Users\\Ashish.manjhi\\Desktop\\test.txt")))) {
+	        Stream.of(words).forEach(pw::println);
+	    }
+	}
+	//--------------------------------------------------------------------------------------------------	
+	
+	// when FileToStream  then Get Stream
+	private List<String> getPalindrome(Stream<String> stream, int length) {
+	    return stream.filter(s -> s.length() == length)
+	      .filter(s -> s.compareToIgnoreCase(
+	        new StringBuilder(s).reverse().toString()) == 0)
+	      .collect(Collectors.toList());
+	}
+	
+	public void whenFileToStream_thenGetStream() throws IOException {
+	    List<String> str = getPalindrome(Files.lines(Paths.get("C:\\Users\\Ashish.manjhi\\Desktop\\test.txt")), 5);
+	   System.out.println("\nGet palindrome words from file :"+str);
+	}
 }
