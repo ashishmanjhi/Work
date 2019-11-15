@@ -21,7 +21,7 @@ public class Refrigerator {
 	 * 
 	 * 
 	 * @param Item object
-	 * @return Shelf id
+	 * @return boolean
 	 * @throws No space Exception
 	 */
 	public boolean addItem(Item item) throws Exception {
@@ -39,7 +39,7 @@ public class Refrigerator {
 					for (Item i : shelf.items) {
 						if (rearrange(i, shelf.id) == true) {
 							shelf.remainingCapacity += i.capacity;
-							addItem(i);
+							addItem(item);
 						}
 					}
 				}
@@ -50,6 +50,11 @@ public class Refrigerator {
 		return flag;
 	}
 
+	/**
+	 * @param item
+	 * @param shelf
+	 * @return boolean
+	 */
 	private boolean addItemToShelf(Item item, Shelf shelf) {
 		boolean flag = false;
 		if (shelf.remainingCapacity >= item.capacity) {
@@ -78,7 +83,12 @@ public class Refrigerator {
 				Float size=shelf.remainingCapacity;
 				for(Item i:shelf.items) {
 				if(itemSize(i,i.capacity+size,shelf)==true) {
-				return out=true;	
+				try {
+					if(out==false)
+						addItem(item);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
 				}
 				}
 			}
@@ -88,6 +98,12 @@ public class Refrigerator {
 		return out;
 	}
 	
+	/**
+	 * @param item
+	 * @param capacity
+	 * @param shelf1
+	 * @return boolean
+	 */
 	public boolean itemSize(Item item,Float capacity,Shelf shelf1) {
 		boolean flag=false;
 		for (Shelf shelf : shelves) {
