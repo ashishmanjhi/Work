@@ -5,8 +5,6 @@ import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
-
 //Refrigerator Model
 
 /**
@@ -19,67 +17,114 @@ public class Refrigerator {
 	// List of shelves inside the refrigerator
 	List<Shelf> shelves = new ArrayList<Shelf>();
 
-	
 	/**
 	 * 
 	 * 
-	 * @param Item object 
-	 * @return Shelf id
+	 * @param Item object
+	 * @return boolean
 	 * @throws No space Exception
 	 */
-	public int addItem(Item item) throws Exception {
-		int id = -1;
+	public boolean addItem(Item item) throws Exception {
+		boolean flag = false;
+
 		for (Shelf shelf : shelves) {
-			if (shelf.remainingCapacity >= item.capacity) {
-				shelf.items.add(item);
-				shelf.remainingCapacity -= item.capacity;
-				id = shelf.id;
-				break;
-			}		
+			flag = addItemToShelf(item, shelf);
 		}
-		DoubleSummaryStatistics stats = shelves.stream()
-			      .collect(Collectors.summarizingDouble(Shelf::getRemainingCapacity));
-		
-		if (id == -1) {
-			if((stats.getSum())>=item.capacity) {
+
+		if (flag == false) {
+			DoubleSummaryStatistics stats = shelves.stream()
+					.collect(Collectors.summarizingDouble(Shelf::getRemainingCapacity));
+			if ((stats.getSum()) >= item.capacity) {
 				for (Shelf shelf : shelves) {
-					for(Item i: shelf.items) {
-						if(rearrange(i,shelf.id)==true) {
-							shelf.remainingCapacity+=i.capacity;
-						id=addItem(i);
+					for (Item i : shelf.items) {
+						if (rearrange(i, shelf.id) == true) {
+							shelf.remainingCapacity += i.capacity;
+							addItem(item);
 						}
 					}
 				}
-				
-			}
-			else
-		throw new NotEnoughSpaceException("Not Enough Space."+item.capacity);
+
+			} else
+				throw new NotEnoughSpaceException("Not Enough Space." + item.capacity);
 		}
-		return id;
-	}
-	
-	
-	
-	/**
-	 * @param Item object
-	 * @param shelfid
-	 * @return boolean value 
-	 */
-	public boolean rearrange(Item item,int shelfid) {
-		boolean out=true;
-		for (Shelf shelf : shelves) {
-		if(item.capacity<=shelf.remainingCapacity && shelfid!=shelf.id) {
-			shelf.items.add(item);
-		shelf.remainingCapacity -= item.capacity;
-		break;
-		}
-		else
-			out=false;
-	}
-		return out;
+		return flag;
 	}
 
+	/**
+	 * @param item
+	 * @param shelf
+	 * @return boolean
+	 */
+	private boolean addItemToShelf(Item item, Shelf shelf) {
+		boolean flag = false;
+		if (shelf.remainingCapacity >= item.capacity) {
+			shelf.items.add(item);
+			shelf.remainingCapacity -= item.capacity;
+			flag = true;
+		}
+		return flag;
+	}
+
+	/**
+	 * @param Item    object
+	 * @param shelfid
+	 * @return boolean value
+	 */
+	public boolean rearrange(Item item, int shelfid) {
+		boolean out = false;
+		for (Shelf shelf : shelves) {
+			if (item.capacity <= shelf.remainingCapacity && shelfid != shelf.id&& shelf.remainingCapacity!=0) {
+				shelf.items.add(item);
+				shelf.remainingCapacity -= item.capacity;
+				out=true;
+				break;
+			} 
+			if(shelf.remainingCapacity!=0) {
+				Float size=shelf.remainingCapacity;
+				for(Item i:shelf.items) {
+				if(reshuff(i,i.capacity+size,shelf)==true) {
+				try {
+					if(out==false)
+						addItem(item);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}	
+				}
+				}
+			}
+			else
+				return out ;
+		}
+		return out;
+	}
 	
+	/**
+	 * @param item
+	 * @param capacity
+	 * @param shelf1
+	 * @return boolean
+	 */
+	public boolean reshuff(Item item,Float capacity,Shelf shelf1) {
+		boolean flag=false;
+		for (Shelf shelf : shelves) {
+			for(Item i:shelf.items) {
+				if(capacity==i.capacity);{
+					shelf.items.remove(i);
+					shelf.remainingCapacity+=(i.capacity);
+					shelf.items.add(item);
+					shelf.remainingCapacity-=item.capacity;
+					shelf1.items.remove(item);
+					shelf1.remainingCapacity+=item.capacity;
+					shelf1.items.add(i);
+					flag=true;
+					break;
+				}
+			}
+		}
+		return flag;
+		
+	}
+
 	/**
 	 * @param Item id
 	 * @return Item selected by user by id
@@ -97,7 +142,7 @@ public class Refrigerator {
 					break;
 				}
 			}
-			
+
 		}
 		if (itemRemoved == null) {
 
@@ -106,7 +151,6 @@ public class Refrigerator {
 		return itemRemoved;
 	}
 
-	
 	/**
 	 * @param Item name
 	 * @return Item selected by user by name
@@ -126,7 +170,7 @@ public class Refrigerator {
 					itemList.remove(item);
 					break;
 				}
-			}			
+			}
 		}
 		if (itemRemoved == null) {
 
@@ -148,7 +192,7 @@ public class Refrigerator {
 		}
 	}
 
-	//Exception class for item not found
+	// Exception class for item not found
 	@SuppressWarnings("serial")
 	public class ItemNotFoundException extends Exception {
 		public ItemNotFoundException(String msg) {
@@ -156,9 +200,8 @@ public class Refrigerator {
 		}
 	}
 
-	
 	/**
-	 * @param contain List of shelves 
+	 * @param contain List of shelves
 	 */
 	public Refrigerator(List<Shelf> shelves) {
 		this.shelves = shelves;
