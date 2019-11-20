@@ -3,7 +3,7 @@ package com.springboot.reactive.model;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+@Document(collection = "employee")
 public class Employee {
 
     @Id
