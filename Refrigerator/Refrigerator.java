@@ -97,29 +97,29 @@ public class Refrigerator {
 	 * @param shelf1
 	 * @return boolean
 	 */
-	public boolean reshuff(Item item, Float capacity, Shelf shelf1) {
-		boolean flag = false;
-		for (Shelf shelf : shelves) {
-			for (Item i : shelf.items) {
-				if (capacity == i.capacity)
-					;
-				{
-					shelf.items.remove(i);
-					shelf.remainingCapacity += (i.capacity);
-					shelf.items.add(item);
-					shelf.remainingCapacity -= item.capacity;
-					shelf1.items.remove(item);
-					shelf1.remainingCapacity += item.capacity;
-					shelf1.items.add(i);
-					shelf1.remainingCapacity -= i.capacity;
-					flag = true;
-					break;
-				}
-			}
-		}
-		return flag;
-
-	}
+//	public boolean reshuff(Item item, Float capacity, Shelf shelf1) {
+//		boolean flag = false;
+//		for (Shelf shelf : shelves) {
+//			for (Item i : shelf.items) {
+//				if (capacity == i.capacity)
+//					;
+//				{
+//					shelf.items.remove(i);
+//					shelf.remainingCapacity += (i.capacity);
+//					shelf.items.add(item);
+//					shelf.remainingCapacity -= item.capacity;
+//					shelf1.items.remove(item);
+//					shelf1.remainingCapacity += item.capacity;
+//					shelf1.items.add(i);
+//					shelf1.remainingCapacity -= i.capacity;
+//					flag = true;
+//					break;
+//				}
+//			}
+//		}
+//		return flag;
+//
+//	}
 
 	/**
 	 * @param Item id
