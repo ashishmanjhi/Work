@@ -26,24 +26,33 @@ public class Refrigerator {
 	 */
 	public boolean addItem(Item item) throws Exception {
 		boolean flag = false;
+		int count=0;
 
 		for (Shelf shelf : shelves) {
 			flag = addItemToShelf(item, shelf);
+			if (flag == true)
+				break;
 		}
 
 		if (flag == false) {
-			DoubleSummaryStatistics stats = shelves.stream()
+			DoubleSummaryStatistics stats1 = shelves.stream()
 					.collect(Collectors.summarizingDouble(Shelf::getRemainingCapacity));
-			if ((stats.getSum()) >= item.capacity) {
-				for (Shelf shelf : shelves) {
-					for (Item i : shelf.items) {
-						if (rearrange(i, shelf.id) == true) {
-							shelf.remainingCapacity += i.capacity;
-							addItem(item);
+			if ((item.capacity <= stats1.getSum())) {
+				for (Shelf shelf1 : shelves) {
+					for (Item i : shelf1.items) {
+						if (rearrange(i, shelf1.id) == true) {
+							shelf1.items.remove(i);
+							shelf1.remainingCapacity += i.capacity;	
 						}
+						if((flag=addItemToShelf(item,shelf1))==true)
+							break;
+						else if((flag=addItemToShelf(item,shelf1))==false) {
+							count++;	
+						}
+						if(count==4)
+							throw new	NotEnoughSpaceException("Not Enough even after shuffle." + item.capacity);
 					}
 				}
-
 			} else
 				throw new NotEnoughSpaceException("Not Enough Space." + item.capacity);
 		}
@@ -73,56 +82,43 @@ public class Refrigerator {
 	public boolean rearrange(Item item, int shelfid) {
 		boolean out = false;
 		for (Shelf shelf : shelves) {
-			if (item.capacity <= shelf.remainingCapacity && shelfid != shelf.id&& shelf.remainingCapacity!=0) {
+			if (item.capacity <= shelf.remainingCapacity && shelfid != shelf.id) {
 				shelf.items.add(item);
 				shelf.remainingCapacity -= item.capacity;
-				out=true;
-				break;
-			} 
-//			if(shelf.remainingCapacity!=0) {
-//				Float size=shelf.remainingCapacity;
-//				for(Item i:shelf.items) {
-//				if(reshuff(i,i.capacity+size,shelf)==true) {
-//				try {
-//					if(out==false)
-//						addItem(item);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}	
-//				}
-//				}
-//			}
-			else
-				return out ;
+				return out = true;
+			}
 		}
 		return out;
 	}
-	
+
 	/**
 	 * @param item
 	 * @param capacity
 	 * @param shelf1
 	 * @return boolean
 	 */
-	public boolean reshuff(Item item,Float capacity,Shelf shelf1) {
-		boolean flag=false;
+	public boolean reshuff(Item item, Float capacity, Shelf shelf1) {
+		boolean flag = false;
 		for (Shelf shelf : shelves) {
-			for(Item i:shelf.items) {
-				if(capacity==i.capacity);{
+			for (Item i : shelf.items) {
+				if (capacity == i.capacity)
+					;
+				{
 					shelf.items.remove(i);
-					shelf.remainingCapacity+=(i.capacity);
+					shelf.remainingCapacity += (i.capacity);
 					shelf.items.add(item);
-					shelf.remainingCapacity-=item.capacity;
+					shelf.remainingCapacity -= item.capacity;
 					shelf1.items.remove(item);
-					shelf1.remainingCapacity+=item.capacity;
+					shelf1.remainingCapacity += item.capacity;
 					shelf1.items.add(i);
-					flag=true;
+					shelf1.remainingCapacity -= i.capacity;
+					flag = true;
 					break;
 				}
 			}
 		}
 		return flag;
-		
+
 	}
 
 	/**
