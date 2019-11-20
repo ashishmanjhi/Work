@@ -79,19 +79,19 @@ public class Refrigerator {
 				out=true;
 				break;
 			} 
-			if(shelf.remainingCapacity!=0) {
-				Float size=shelf.remainingCapacity;
-				for(Item i:shelf.items) {
-				if(reshuff(i,i.capacity+size,shelf)==true) {
-				try {
-					if(out==false)
-						addItem(item);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}	
-				}
-				}
-			}
+//			if(shelf.remainingCapacity!=0) {
+//				Float size=shelf.remainingCapacity;
+//				for(Item i:shelf.items) {
+//				if(reshuff(i,i.capacity+size,shelf)==true) {
+//				try {
+//					if(out==false)
+//						addItem(item);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}	
+//				}
+//				}
+//			}
 			else
 				return out ;
 		}
