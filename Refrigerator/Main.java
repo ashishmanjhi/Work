@@ -22,14 +22,14 @@ public class Main {
 		
 		try {
 			//Adding items inside the refrigerator
-			 refrigerator.addItem(new Item(101, "Milk"));
-			refrigerator.addItem(new Item(102, "apple"));
-			refrigerator.addItem(new Item(103, "cake"));
-			refrigerator.addItem(new Item(104, "drink"));
-			refrigerator.addItem(new Item(105, "beer"));
-			refrigerator.addItem(new Item(106, "Banana"));
-			refrigerator.addItem(new Item(107, "Mango"));
-			refrigerator.addItem(new Item(108, "Ice"));
+			 refrigerator.addItem(new Item(101, "Milk",5.0f));
+			refrigerator.addItem(new Item(102, "apple",9.0f));
+			refrigerator.addItem(new Item(103, "cake",6.0f));
+			refrigerator.addItem(new Item(104, "drink",5.0f));
+			refrigerator.addItem(new Item(105, "beer",8.0f));
+			refrigerator.addItem(new Item(106, "Banana",4.0f));
+			refrigerator.addItem(new Item(107, "Mango",10.0f));
+			//refrigerator.addItem(new Item(108, "Ice",3.0f));
 			
 			//Items inside the Refrigerator.
 			System.out.println("Items inside the refrigerator : "+refrigerator);

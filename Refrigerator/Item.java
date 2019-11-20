@@ -54,7 +54,7 @@ public class Item {
 	 * @param Item name
 	 * @param Item capacity
 	 */
-	public Item(int id, String name, Float capacity) {
+	public Item(int id, String name, float capacity) {
 		this.id = id;
 		this.name = name;
 		this.capacity = capacity;
