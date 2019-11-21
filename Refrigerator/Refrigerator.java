@@ -49,8 +49,8 @@ public class Refrigerator {
 						else if((flag=addItemToShelf(item,shelf1))==false) {
 							count++;	
 						}
-						if(count==4)
-							throw new	NotEnoughSpaceException("Not Enough even after shuffle." + item.capacity);
+						if(count==stats1.getCount())
+							throw new	NotEnoughSpaceException("Not Enough even after shuffle the items. " + item.capacity);
 					}
 				}
 			} else
