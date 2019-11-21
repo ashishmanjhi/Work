@@ -43,15 +43,17 @@ public class Refrigerator {
 						if (rearrange(i, shelf1.id) == true) {
 							shelf1.items.remove(i);
 							shelf1.remainingCapacity += i.capacity;	
+							break;
 						}
 						if((flag=addItemToShelf(item,shelf1))==true)
 							break;
-						else if((flag=addItemToShelf(item,shelf1))==false) {
-							count++;	
 						}
-						if(count==stats1.getCount())
-							throw new	NotEnoughSpaceException("Not Enough even after shuffle the items. " + item.capacity);
+					 if(flag==false) {
+						count++;	
 					}
+					if(count==stats1.getCount())
+						throw new	NotEnoughSpaceException("Not Enough even after shuffle the items. " + item.capacity);
+				
 				}
 			} else
 				throw new NotEnoughSpaceException("Not Enough Space." + item.capacity);
@@ -85,7 +87,8 @@ public class Refrigerator {
 			if (item.capacity <= shelf.remainingCapacity && shelfid != shelf.id) {
 				shelf.items.add(item);
 				shelf.remainingCapacity -= item.capacity;
-				return out = true;
+				 return out = true;
+				 
 			}
 		}
 		return out;
