@@ -4,7 +4,6 @@ import com.springboot.reactive.model.Employee;
 import com.springboot.reactive.model.EmployeeEvent;
 import com.springboot.reactive.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,12 +53,14 @@ public class EmployeeResource {
 
   @PutMapping("/update/{id}")
     public Mono<ResponseEntity<Employee>>  updateEmployeeById(@PathVariable(value="id") String empId,@Valid @RequestBody Employee employee){
-        return employeeRepository.findById(empId).flatMap(existingEmployee->{
-            existingEmployee.setId(employee.getId());
-            return employeeRepository.save(existingEmployee);
+        return employeeRepository.findById(empId)
+                .flatMap(existingEmployee->{
+            existingEmployee.setName(employee.getName());
+                    existingEmployee.setSalary(employee.getSalary());
+                    return employeeRepository.save(existingEmployee);
         })
-                .map(updatedEmployee->new ResponseEntity<>(updatedEmployee, HttpStatus.OK))
-                .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .map(updatedEmployee-> ResponseEntity.ok(updatedEmployee))
+                .defaultIfEmpty(ResponseEntity.badRequest().build());
 
     }
 
@@ -68,7 +69,7 @@ public class EmployeeResource {
         return employeeRepository.findById(empId)
                 .flatMap(existingEmployee->
                         employeeRepository.delete(existingEmployee)
-                .then(Mono.just(new ResponseEntity<Void>(HttpStatus.OK))))
-                .defaultIfEmpty(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+                .then(Mono.just(ResponseEntity.ok().<Void>build())))
+                .defaultIfEmpty(ResponseEntity.notFound().build());
     }
 }
