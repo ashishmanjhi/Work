@@ -33,7 +33,7 @@ public class Refrigerator {
 			if (flag == true)
 				break;
 		}
-
+System.out.println(flag);
 		if (flag == false) {
 			DoubleSummaryStatistics stats1 = shelves.stream()
 					.collect(Collectors.summarizingDouble(Shelf::getRemainingCapacity));
@@ -43,11 +43,12 @@ public class Refrigerator {
 						if (rearrange(i, shelf1.id) == true) {
 							shelf1.items.remove(i);
 							shelf1.remainingCapacity += i.capacity;	
-							break;
+							if(addItem(item)==true)
+							return true;
 						}
-						if((flag=addItemToShelf(item,shelf1))==true)
-							break;
-						}
+//						if((flag=addItemToShelf(item,shelf1))==true)
+//							break;
+				}
 					 if(flag==false) {
 						count++;	
 					}
@@ -197,6 +198,12 @@ public class Refrigerator {
 		public ItemNotFoundException(String msg) {
 			super(msg);
 		}
+	}
+
+	
+	
+	public Refrigerator() {
+
 	}
 
 	/**
