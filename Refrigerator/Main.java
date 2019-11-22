@@ -7,8 +7,9 @@ import java.util.List;
 public class Main {
 	/**
 	 * @param args
+	 * @throws Exception 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 
 		// List of shelves present inside the Refrigerator
         List<Shelf> shelves=new ArrayList<Shelf>();
@@ -31,27 +32,27 @@ public class Main {
 			refrigerator.addItem(new Item(107, "Mango",4.0f));
 			refrigerator.addItem(new Item(108, "Ice",3.0f));
 			refrigerator.addItem(new Item(109, "Ice1",6.0f));
-		refrigerator.addItem(new Item(110, "Ice2",5.0f));
+		    refrigerator.addItem(new Item(110, "Ice2",5.0f));
 //			refrigerator.addItem(new Item(111, "Ice3",1.0f));
 //			refrigerator.addItem(new Item(112, "Ice4",2.0f));
-			
-			//Items inside the Refrigerator.
-			System.out.println("Items inside the refrigerator : "+refrigerator);
-			
-			System.out.println("\n");
-			
-			//Taking out an item from the Refrigerator by item id.
-			//System.out.println("item taken out by the user by item id "+refrigerator.getItemById(102));
-			
-			//taking out an item from the Refrigerator by item name
-		//	System.out.println("item taken out by the user by item name "+refrigerator.getItemByName("cake"));
-			
-			System.out.println("\n");
 			
 		} catch (Exception e) {
 			
 			e.printStackTrace();
 		}
+		
+		//Items inside the Refrigerator.
+		System.out.println("Items inside the refrigerator : "+refrigerator);
+		
+		System.out.println("\n");
+		
+		//Taking out an item from the Refrigerator by item id.
+		System.out.println("item taken out by the user by item id "+refrigerator.getItemById(102));
+		
+		//taking out an item from the Refrigerator by item name
+		System.out.println("item taken out by the user by item name "+refrigerator.getItemByName("cake"));
+		
+		System.out.println("\n");
 		//Remaining items inside the refrigerator
 		System.out.println("Remaining Items inside the refrigerator : "+refrigerator);
 	}
