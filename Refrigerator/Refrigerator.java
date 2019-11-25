@@ -1,6 +1,7 @@
 package com.refrigerator;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -36,12 +37,13 @@ public class Refrigerator {
 		}
 		//System.out.println(flag);
 		if (flag == false) {
-			
+		//	List<Shelf>shelves1=shelves.stream().sorted(Comparator.comparingDouble(Shelf::getRemainingCapacity)).collect(Collectors.toList());
 			DoubleSummaryStatistics stats1 = shelves.stream()
 					.collect(Collectors.summarizingDouble(Shelf::getRemainingCapacity));
 			
 			if ((item.capacity <= stats1.getSum())) {
-				for (Shelf shelf1 : shelves) {
+				for (Shelf shelf1 : shelves) 
+				{
 					for (Item i : shelf1.items) {
 						if (rearrange(i, shelf1.id) == true) {
 							shelf1.items.remove(i);
@@ -84,7 +86,9 @@ public class Refrigerator {
 	 */
 	public boolean rearrange(Item item, int shelfid) {
 		boolean out = false;
-		for (Shelf shelf : shelves) {
+		//List<Shelf>shelves1=shelves.stream().sorted(Comparator.comparingDouble(Shelf::getRemainingCapacity)).collect(Collectors.toList());
+	//	System.out.println(shelves);
+		for (Shelf shelf : shelves.stream().sorted(Comparator.comparingDouble(Shelf::getRemainingCapacity)).collect(Collectors.toList())) {
 			if (item.capacity <= shelf.remainingCapacity && shelfid != shelf.id) {
 				shelf.items.add(item);
 				shelf.remainingCapacity -= item.capacity;
