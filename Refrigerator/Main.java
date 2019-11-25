@@ -32,9 +32,10 @@ public class Main {
 			refrigerator.addItem(new Item(107, "Mango",4.0f));
 			refrigerator.addItem(new Item(108, "Ice",3.0f));
 			refrigerator.addItem(new Item(109, "Ice1",6.0f));
-		    refrigerator.addItem(new Item(110, "Ice2",5.0f));
-//			refrigerator.addItem(new Item(111, "Ice3",1.0f));
-//			refrigerator.addItem(new Item(112, "Ice4",2.0f));
+		    refrigerator.addItem(new Item(110, "Ice2",3.0f));
+			refrigerator.addItem(new Item(111, "Ice3",4.0f));
+			//refrigerator.addItem(new Item(112, "Ice4",2.0f));
+			//refrigerator.addItem(new Item(113, "lava",5.0f));
 			
 		} catch (Exception e) {
 			

@@ -16,6 +16,7 @@ public class Refrigerator {
 
 	// List of shelves inside the refrigerator
 	List<Shelf> shelves = new ArrayList<Shelf>();
+	int count=0;
 
 	/**
 	 * 
@@ -26,17 +27,19 @@ public class Refrigerator {
 	 */
 	public boolean addItem(Item item) throws Exception {
 		boolean flag = false;
-		int count=0;
+		
 
 		for (Shelf shelf : shelves) {
 			flag = addItemToShelf(item, shelf);
 			if (flag == true)
 				break;
 		}
-System.out.println(flag);
+		//System.out.println(flag);
 		if (flag == false) {
+			
 			DoubleSummaryStatistics stats1 = shelves.stream()
 					.collect(Collectors.summarizingDouble(Shelf::getRemainingCapacity));
+			
 			if ((item.capacity <= stats1.getSum())) {
 				for (Shelf shelf1 : shelves) {
 					for (Item i : shelf1.items) {
@@ -44,17 +47,14 @@ System.out.println(flag);
 							shelf1.items.remove(i);
 							shelf1.remainingCapacity += i.capacity;	
 							if(addItem(item)==true)
-							return true;
+								return true;
 						}
-//						if((flag=addItemToShelf(item,shelf1))==true)
-//							break;
-				}
-					 if(flag==false) {
+						}			
 						count++;	
-					}
+					System.out.println(count);
 					if(count==stats1.getCount())
 						throw new	NotEnoughSpaceException("Not Enough even after shuffle the items. " + item.capacity);
-				
+
 				}
 			} else
 				throw new NotEnoughSpaceException("Not Enough Space." + item.capacity);
@@ -88,8 +88,8 @@ System.out.println(flag);
 			if (item.capacity <= shelf.remainingCapacity && shelfid != shelf.id) {
 				shelf.items.add(item);
 				shelf.remainingCapacity -= item.capacity;
-				 return out = true;
-				 
+				return out = true;
+
 			}
 		}
 		return out;
@@ -101,29 +101,29 @@ System.out.println(flag);
 	 * @param shelf1
 	 * @return boolean
 	 */
-//	public boolean reshuff(Item item, Float capacity, Shelf shelf1) {
-//		boolean flag = false;
-//		for (Shelf shelf : shelves) {
-//			for (Item i : shelf.items) {
-//				if (capacity == i.capacity)
-//					;
-//				{
-//					shelf.items.remove(i);
-//					shelf.remainingCapacity += (i.capacity);
-//					shelf.items.add(item);
-//					shelf.remainingCapacity -= item.capacity;
-//					shelf1.items.remove(item);
-//					shelf1.remainingCapacity += item.capacity;
-//					shelf1.items.add(i);
-//					shelf1.remainingCapacity -= i.capacity;
-//					flag = true;
-//					break;
-//				}
-//			}
-//		}
-//		return flag;
-//
-//	}
+	//	public boolean reshuff(Item item, Float capacity, Shelf shelf1) {
+	//		boolean flag = false;
+	//		for (Shelf shelf : shelves) {
+	//			for (Item i : shelf.items) {
+	//				if (capacity == i.capacity)
+	//					;
+	//				{
+	//					shelf.items.remove(i);
+	//					shelf.remainingCapacity += (i.capacity);
+	//					shelf.items.add(item);
+	//					shelf.remainingCapacity -= item.capacity;
+	//					shelf1.items.remove(item);
+	//					shelf1.remainingCapacity += item.capacity;
+	//					shelf1.items.add(i);
+	//					shelf1.remainingCapacity -= i.capacity;
+	//					flag = true;
+	//					break;
+	//				}
+	//			}
+	//		}
+	//		return flag;
+	//
+	//	}
 
 	/**
 	 * @param Item id
@@ -200,8 +200,8 @@ System.out.println(flag);
 		}
 	}
 
-	
-	
+
+
 	public Refrigerator() {
 
 	}
