@@ -28,19 +28,17 @@ public class Refrigerator {
 	 */
 	public boolean addItem(Item item) throws Exception {
 		boolean flag = false;
-		
+
 
 		for (Shelf shelf : shelves) {
 			flag = addItemToShelf(item, shelf);
 			if (flag == true)
 				break;
 		}
-		//System.out.println(flag);
 		if (flag == false) {
-		//	List<Shelf>shelves1=shelves.stream().sorted(Comparator.comparingDouble(Shelf::getRemainingCapacity)).collect(Collectors.toList());
 			DoubleSummaryStatistics stats1 = shelves.stream()
 					.collect(Collectors.summarizingDouble(Shelf::getRemainingCapacity));
-			
+
 			if ((item.capacity <= stats1.getSum())) {
 				for (Shelf shelf1 : shelves) 
 				{
@@ -51,9 +49,8 @@ public class Refrigerator {
 							if(addItem(item)==true)
 								return true;
 						}
-						}			
-						count++;	
-					System.out.println(count);
+					}			
+					count++;	
 					if(count==stats1.getCount())
 						throw new	NotEnoughSpaceException("Not Enough even after shuffle the items. " + item.capacity);
 
@@ -86,8 +83,6 @@ public class Refrigerator {
 	 */
 	public boolean rearrange(Item item, int shelfid) {
 		boolean out = false;
-		//List<Shelf>shelves1=shelves.stream().sorted(Comparator.comparingDouble(Shelf::getRemainingCapacity)).collect(Collectors.toList());
-	//	System.out.println(shelves);
 		for (Shelf shelf : shelves.stream().sorted(Comparator.comparingDouble(Shelf::getRemainingCapacity)).collect(Collectors.toList())) {
 			if (item.capacity <= shelf.remainingCapacity && shelfid != shelf.id) {
 				shelf.items.add(item);
@@ -98,36 +93,6 @@ public class Refrigerator {
 		}
 		return out;
 	}
-
-	/**
-	 * @param item
-	 * @param capacity
-	 * @param shelf1
-	 * @return boolean
-	 */
-	//	public boolean reshuff(Item item, Float capacity, Shelf shelf1) {
-	//		boolean flag = false;
-	//		for (Shelf shelf : shelves) {
-	//			for (Item i : shelf.items) {
-	//				if (capacity == i.capacity)
-	//					;
-	//				{
-	//					shelf.items.remove(i);
-	//					shelf.remainingCapacity += (i.capacity);
-	//					shelf.items.add(item);
-	//					shelf.remainingCapacity -= item.capacity;
-	//					shelf1.items.remove(item);
-	//					shelf1.remainingCapacity += item.capacity;
-	//					shelf1.items.add(i);
-	//					shelf1.remainingCapacity -= i.capacity;
-	//					flag = true;
-	//					break;
-	//				}
-	//			}
-	//		}
-	//		return flag;
-	//
-	//	}
 
 	/**
 	 * @param Item id

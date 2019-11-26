@@ -8,7 +8,7 @@ public class Shelf {
 	
 	//Shelf id , remaining capacity and list of items 
 	int id;
-	float remainingCapacity;
+	double remainingCapacity;
 	List<Item> items=new ArrayList<Item>();
 
 	
@@ -16,7 +16,7 @@ public class Shelf {
 	 * @param id
 	 * @param remainingCapacity
 	 */
-	public Shelf(int id,float remainingCapacity) {
+	public Shelf(int id,double remainingCapacity) {
 		this.id = id;
 		this.remainingCapacity=remainingCapacity;
 	}
@@ -40,14 +40,14 @@ public class Shelf {
 	/**
 	 * @return Shelf remaining space
 	 */
-	public float getRemainingCapacity() {
+	public double getRemainingCapacity() {
 		return remainingCapacity;
 	}
 
 	/**
 	 * @param Shelf remainingCapacity
 	 */
-	public void setRemainingCapacity(float remainingCapacity) {
+	public void setRemainingCapacity(double remainingCapacity) {
 		this.remainingCapacity = remainingCapacity;
 	}
 

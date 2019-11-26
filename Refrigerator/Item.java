@@ -6,9 +6,10 @@ public class Item {
 	//Item id ,name and a random capacity
 	int id;
 	String name;
-	Float capacity = (float) (Math.random()*10)+1;
+	double capacity;
 
 	
+
 	// Getter and Setters
 	/**
 	 * @return Item id
@@ -38,6 +39,14 @@ public class Item {
 		this.name = name;
 	}
 
+	public double getCapacity() {
+		return capacity;
+	}
+
+	public void setCapacity(double capacity) {
+		this.capacity = capacity;
+	}
+
 	/**
 	 * @param Item id
 	 * @param Item name
@@ -54,7 +63,7 @@ public class Item {
 	 * @param Item name
 	 * @param Item capacity
 	 */
-	public Item(int id, String name, float capacity) {
+	public Item(int id, String name, double capacity) {
 		this.id = id;
 		this.name = name;
 		this.capacity = capacity;
@@ -67,7 +76,9 @@ public class Item {
 
 	@Override
 	public String toString() {
-		return "\n  Item [itemId=" + id + ", name=" + name + ", ItemCapacity=" + capacity + "]";
+		return "Item [id=" + id + ", name=" + name + ", capacity=" + capacity + "]";
 	}
+
+	
 	
 }
