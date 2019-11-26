@@ -32,8 +32,8 @@ public class Main {
 			refrigerator.addItem(new Item(107, "Mango",4));
 			refrigerator.addItem(new Item(108, "Ice",3));
 			refrigerator.addItem(new Item(109, "Ice1",6));
-			refrigerator.addItem(new Item(110, "Ice2",3));
-			refrigerator.addItem(new Item(111, "Ice3",5));
+			refrigerator.addItem(new Item(110, "Ice2",5));
+			refrigerator.addItem(new Item(111, "Ice3",3));
 			//refrigerator.addItem(new Item(112, "Ice4",2.0));
 			//refrigerator.addItem(new Item(113, "lava",5.0));
 

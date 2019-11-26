@@ -51,7 +51,8 @@ public class Refrigerator {
 						}
 					}			
 					count++;	
-					if(count==stats1.getCount())
+					System.out.println(count);
+					if(count==(stats1.getCount()*2))
 						throw new	NotEnoughSpaceException("Not Enough even after shuffle the items. " + item.capacity);
 
 				}
