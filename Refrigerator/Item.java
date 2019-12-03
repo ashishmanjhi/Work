@@ -2,13 +2,13 @@ package com.refrigerator;
 
 // Item Model
 public class Item {
-	
+
 	//Item id ,name and a random capacity
 	int id;
 	String name;
 	double capacity;
 
-	
+
 
 	// Getter and Setters
 	/**
@@ -39,10 +39,16 @@ public class Item {
 		this.name = name;
 	}
 
+	/**
+	 * @return capacity
+	 */
 	public double getCapacity() {
 		return capacity;
 	}
 
+	/**
+	 * @param capacity
+	 */
 	public void setCapacity(double capacity) {
 		this.capacity = capacity;
 	}
@@ -55,7 +61,7 @@ public class Item {
 		this.id = id;
 		this.name = name;
 	}
-	
+
 
 	//Constructor for Item model
 	/**
@@ -68,7 +74,7 @@ public class Item {
 		this.name = name;
 		this.capacity = capacity;
 	}
-	
+
 	//Default Constructor
 	public Item()
 	{		
@@ -79,6 +85,6 @@ public class Item {
 		return "Item [id=" + id + ", name=" + name + ", capacity=" + capacity + "]";
 	}
 
-	
-	
+
+
 }

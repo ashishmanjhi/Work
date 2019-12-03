@@ -21,26 +21,22 @@ public class Main {
 		//Refrigerator object
 		Refrigerator refrigerator=new Refrigerator(shelves);
 
-		try {
-			//Adding items inside the refrigerator
-			refrigerator.addItem(new Item(101, "Milk",1));
-			refrigerator.addItem(new Item(102, "apple",2));
-			refrigerator.addItem(new Item(103, "cake",5));
-			refrigerator.addItem(new Item(104, "drink",9));
-			refrigerator.addItem(new Item(105, "beer",6));
-			refrigerator.addItem(new Item(106, "Banana",5));
-			refrigerator.addItem(new Item(107, "Mango",4));
-			refrigerator.addItem(new Item(108, "Ice",3));
-			refrigerator.addItem(new Item(109, "Ice1",6));
-			refrigerator.addItem(new Item(110, "Ice2",5));
-			refrigerator.addItem(new Item(111, "Ice3",3));
-			//refrigerator.addItem(new Item(112, "Ice4",2.0));
-			//refrigerator.addItem(new Item(113, "lava",5.0));
+		//Adding items inside the refrigerator
+		refrigerator.addItem(new Item(101, "Milk",1));
+		refrigerator.addItem(new Item(102, "apple",2));
+		refrigerator.addItem(new Item(103, "cake",5));
+		refrigerator.addItem(new Item(104, "drink",9));
+		refrigerator.addItem(new Item(105, "beer",6));
+		refrigerator.addItem(new Item(106, "Banana",5));
+		refrigerator.addItem(new Item(107, "Mango",4));
+		refrigerator.addItem(new Item(108, "Ice",3));
+		refrigerator.addItem(new Item(109, "Ice1",6));
+		refrigerator.addItem(new Item(110, "Ice2",5));
+		refrigerator.addItem(new Item(111, "Ice3",3));
+		//refrigerator.addItem(new Item(112, "Ice4",2.0));
+		//refrigerator.addItem(new Item(113, "lava",5.0));
 
-		} catch (Exception e) {
 
-			e.printStackTrace();
-		}
 
 		//Items inside the Refrigerator.
 		System.out.println("Items inside the refrigerator : "+refrigerator);

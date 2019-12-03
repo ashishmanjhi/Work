@@ -5,13 +5,13 @@ import java.util.List;
 
 //Shelf Model
 public class Shelf {
-	
+
 	//Shelf id , remaining capacity and list of items 
 	int id;
 	double remainingCapacity;
 	List<Item> items=new ArrayList<Item>();
 
-	
+
 	/**
 	 * @param id
 	 * @param remainingCapacity
@@ -20,7 +20,7 @@ public class Shelf {
 		this.id = id;
 		this.remainingCapacity=remainingCapacity;
 	}
-	
+
 
 	// Getter and Setter
 	/**

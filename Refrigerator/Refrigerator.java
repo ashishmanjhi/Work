@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 
 public class Refrigerator {
 
-	// List of shelves inside the refrigerator
+
 	List<Shelf> shelves = new ArrayList<Shelf>();
 	int count=0;
 
@@ -51,7 +51,6 @@ public class Refrigerator {
 						}
 					}			
 					count++;	
-					System.out.println(count);
 					if(count==(stats1.getCount()*2))
 						throw new	NotEnoughSpaceException("Not Enough even after shuffle the items. " + item.capacity);
 
