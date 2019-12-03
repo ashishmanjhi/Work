@@ -1,0 +1,31 @@
+<h3>
+  Employee Dashboard
+</h3>
+
+<div class="container bg-banner">
+
+  <div class="row row-margin">
+    <div class="col-sm-3">
+      <input type="button" class="btn btn-primary" value="New Transaction" (click)="newTrans()">
+    </div>
+    <div class="col-sm-3">
+      <input type="button" class="btn btn-primary" value="View Customer" (click)="viewCust()">
+    </div>
+    <div class="col-sm-3">
+      <input type="button" class="btn btn-primary" value="View Car Stock" (click)="viewCarStock()">
+    </div>
+    <div class="col-sm-3">
+      <input type="button" class="btn btn-primary" value="Transaction History" (click)="transHistory()">
+    </div>
+  </div>
+
+  <div class="row" style="margin: 3%">
+    <!-- <div class="col-sm-4"><app-search></app-search></div> -->
+    <div class="col-sm-12 bg-lwhite">
+      <section>
+        <router-outlet name="sub"></router-outlet>
+      </section>
+    </div>
+  </div>
+
+</div>

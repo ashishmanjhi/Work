@@ -1,0 +1,6 @@
+{
+    "git.allowForcePush": true,
+    "git.alwaysShowStagedChangesResourceGroup": true,
+    "git.enableSmartCommit": true,
+    "git.fetchOnPull": true
+}

@@ -1,0 +1,34 @@
+h3
+{
+    text-align:center;
+    text-decoration: underline;
+}
+.row-margin div input{
+    align-content: center;
+    margin-left: 5%;
+    }
+    .row-margin{
+        margin:30px;
+    
+    }
+    div label{
+        display:block;
+    }
+    
+.bg-banner
+{
+    background: url('../../../assets/car-db.jpg');
+    padding:2%;
+    height: 70%;
+}
+
+.bg-lwhite
+{
+margin-top: 5%;
+margin-bottom: 5%;
+height:80%;
+padding:5%;
+
+  background-color:rgba(240, 245, 245, 0.76) ;
+  z-index: 1;
+}

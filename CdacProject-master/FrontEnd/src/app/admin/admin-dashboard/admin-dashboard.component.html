@@ -1,0 +1,33 @@
+<h3>
+  Admin Dashboard
+</h3>
+
+<div class="container bg-banner">
+
+  <div class="row row-margin">
+    <div class="col-sm-2">
+      <input type="button" class="btn btn-primary" value="View Customer" (click)="viewCust()">
+    </div>
+    <div class="col-sm-2">
+      <input type="button" class="btn btn-primary" value="View Car Stock" (click)="viewCarStock()">
+    </div>
+    <div class="col-sm-2">
+      <input type="button" class="btn btn-primary" value="Transaction History" (click)="transHistory()">
+    </div>
+    <div class="col-sm-2">
+      <input type="button" class="btn btn-primary" value="Add Employee" (click)="addEmployee()">
+    </div>
+    <div class="col-sm-2">
+      <input type="button" class="btn btn-primary" value="View Employee List" (click)="vieEmpList()">
+    </div>
+  </div>
+
+  <div class="row" style="margin: 3%">
+    <div class="col-sm-12 bg-lwhite">
+      <section>
+        <router-outlet name="sub"></router-outlet>
+      </section>
+    </div>
+  </div>
+
+</div>

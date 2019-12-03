@@ -1,0 +1,25 @@
+<div class="container col-sm-8">
+  <h3>Customer Listing</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>custId</th>
+        <th> FName</th>
+        <th> LName</th>
+        <th> ContactNo</th>
+        <th> Address </th>
+        <th>EmailId</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of emp; let i = index">
+        <td>{{item.custId}}</td>
+        <td>{{item.FName}}</td>
+        <td>{{item.LName}}</td>
+        <td>{{item.ContactNo}}</td>
+        <td>{{item.Address}}</td>
+        <td>{{item.EmailId}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

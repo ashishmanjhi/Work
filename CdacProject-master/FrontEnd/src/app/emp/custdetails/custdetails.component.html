@@ -1,0 +1,56 @@
+
+<div class="bg-banner">
+<div class="container bg-lwhite">
+<h3>Customer Details</h3>
+
+<form (submit)="save($event)">
+    <div class="row row-margin">
+        <div class="col-sm-3">
+  <div class="input">
+    <label>First Name</label>
+    <input type="text" [(ngModel)]="FName" name="FName">
+  </div></div>
+  <div class="col-sm-3">
+  <div class="input">
+    <label>Last Name</label>
+    <input type="text" [(ngModel)]="LName" name="LName">
+  </div></div>
+  <div class="col-sm-3">
+  <div class="input">
+          <label>e-Mail</label>
+          <input type="text" [(ngModel)]="Email" name="Email">
+        </div></div>
+        <div class="col-sm-3">
+            <div class="input">
+                  <label>Contact No.</label>
+                  <input type="text" [(ngModel)]="ContactNo" name="ContactNo">
+                </div></div>
+          </div>
+            <div class="row row-margin">
+               
+            <div class="col-sm-3">
+            <div class="input">
+                  <label>Address</label>
+                  <input type="text" [(ngModel)]="Address" name="Address">
+                </div></div>
+                <div class="col-sm-3">
+                <div class="input">
+                      <label>Status(B/S)</label>
+                      <input type="text" [(ngModel)]="Status" name="Status">
+                    </div></div>
+                    <div class="col-sm-3">
+                    <div class="input">
+                          <label>Customer Id</label>
+                          <input type="text" [(ngModel)]="custId" name="custId">
+                        </div> 
+                        </div>
+                      </div>
+                      <input class="button btn-success col-sm-6" (click)="backClicked()" type="button" value="Back">        
+       <input class="button btn-success col-sm-6" type="submit" value="Next">                     
+    
+  
+</form>
+
+
+</div>
+</div>

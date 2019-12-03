@@ -1,0 +1,144 @@
+<div class="bg-banner">
+  <div class="row heigh">
+    <div class="col-sm-8">
+     
+    </div>
+    <div class="col-sm-4 " style="margin-top:10%;padding-top:5%;padding-bottom:5%;background-color: rgba(255, 255, 255, 0.8)">
+        <div class="container">
+  
+            <nav>
+              <a (click)="Admin()">Admin </a>
+              <a (click)="Employee()">Employee </a>
+            </nav>
+          
+            <p>
+              {{user}} Login
+            </p>
+          
+            <div>
+              <div class="input">
+                <label>Username</label>
+                <input #box1 (blur)="getUser(box1.value)" type="text">
+              </div>
+              <div class="input">
+                <label>Password</label>
+                <input #box2 (blur)="getPass(box2.value)" type="password">
+              </div>
+              <div class="input">
+                <input type="submit" value="Login" (click)="Login()">
+              </div>
+            </div>
+          
+          </div>
+    </div>
+    <div>
+  
+    </div>
+  </div>
+  </div>
+   <div class="container-fluid"> 
+    <div class="col-sm-4">
+      <div class="leftbox">
+        <div class="row">
+          <h3>Search Car model</h3>
+          <form action="get" class="row-margin" id="searchform">
+            <div class="row">
+              <div class="col-sm-6">
+                <label>Car Model</label>
+              </div>
+              <div class="col-sm-6">
+                <input type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <label>Manufacturer year</label>
+              </div>
+              <div class="col-sm-6">
+                <select>
+                  <option value="2010">2010</option>
+                  <option value="2011">2011</option>
+                  <option value="2012">2012</option>
+                  <option value="2013">2013</option>
+                  <option value="2014">2014</option>
+                  <option value="2015">2015</option>
+                  <option value="2016">2016</option>
+                  <option value="2017">2017</option>
+                  <option value="2017">2018</option>
+                  <option value="2017">2019</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <label>Invoice Number</label>
+              </div>
+              <div class="col-sm-6">
+                <input type="number">
+              </div>
+  
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <label>Fuel Type</label>
+              </div>
+              <div class="col-sm-6">
+                <label>Petrol</label>
+                <input name="fueltype" type="radio">
+                <label>Diesel</label>
+                <input name="fueltype" type="radio">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <label>Color</label></div>
+              <div class="col-sm-6">
+                <input type="text">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <label>Vehicle Registration Number</label>
+              </div>
+              <div class="col-sm-6">
+                <input type="text">
+              </div>
+            </div>
+            <div>
+              <input class="smt button btn-success col-sm-6" type="submit">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <h3>Car Listing</h3>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>carId</th>
+            <th> Model</th>
+            <th> color</th>
+            <th> Year</th>
+            <th> Rate</th>
+            <th> Manufacture</th>
+            <th> Type</th>
+            <th> Sale</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of modeldata">
+            <td>{{item.carId}}</td>
+            <td>{{item.Model}}</td>
+            <td>{{item.color}}</td>
+            <td>{{item.Year}}</td>
+            <td>{{item.Rate}}</td>
+            <td>{{item.Manufacture}}</td>
+            <td>{{item.Type}}</td>
+            <td>{{item.Sale}}</td>
+          </tr>
+  
+        </tbody>
+      </table>
+    </div>
+  </div> 

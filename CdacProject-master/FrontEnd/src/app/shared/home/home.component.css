@@ -1,0 +1,14 @@
+.bg-banner
+{
+background: url("../../../assets/dashboard-1.jpg");
+height:70%;
+width:100%;
+}
+.heigh
+{
+    height: 500px;
+}
+.modal_box
+{
+    background-color: rgba(255, 255, 255, 0.8);
+}

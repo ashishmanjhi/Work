@@ -1,0 +1,36 @@
+<div class="container col-sm-8">
+    <h3>Employee Listing</h3>
+     <table class="table">
+      <thead>
+        <tr>  
+        <th>Emp_id</th>
+     <th> Name</th>
+     <th>  Designation</th> 
+     <th>  Contact No</th>
+     <th> Address</th>
+     <th>Email</th> 
+     <th>  Salary</th>
+     <th>Age</th> 
+       
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of emp; let i = index">    
+        <td>{{item.empId}}</td>  
+        <td>{{item.Name}}</td> 
+        <td>{{item.Designation}}</td> 
+        <td>{{item.ContactNo}}</td> 
+        <td>{{item.Address}}</td> 
+        <td>{{item.Email}}</td>
+        <td>{{item.Salary}}</td> 
+        <td>{{item.Age}}</td>  
+        <td>
+      <button class='btn btn-danger' (click)='delete(item)'>
+        Delete
+      </button>
+    </td>
+        </tr>
+        
+      </tbody> 
+    </table>
+  </div>

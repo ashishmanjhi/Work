@@ -1,0 +1,26 @@
+.leftbox{
+   
+    left: 2px;
+    
+    /* background:rgba(128, 128, 128, 0.753); */
+    
+} 
+
+h3
+{
+    text-align:center;
+    text-decoration: underline;
+}
+
+.row-margin div input{
+    align-content: right;
+    margin-left: 5%;
+    }
+    .row-margin{
+        margin:30px;
+    
+    }
+
+    #searchform .row{
+        margin:1%;
+    }
