@@ -19,24 +19,28 @@ import com.springboot.dao.BookDao;
 import com.springboot.model.Book;
 
 
+/** The BookController class provides methods to get book details.*/
 @RestController
 @RequestMapping("book")
 public class BookController {
 
 	@Autowired
 	private BookDao dao;
-	
+
+	/**This PostMapping method creates a new book in the database.*/
 	@PostMapping("/Book")
 	public String createBook(@RequestBody List<Book> books) {
 		dao.saveAll(books);
 		return "Book created:" + books.size();
 	}
-	
+
+	/**This GetMapping method provides the list of all the books in the database.*/
 	@GetMapping("/Books")
 	public List<Book> getBooks() {
 		return (List<Book>) dao.findAll();
 	}
 
+	/**This GetMapping method provides detail of an book with a particular id in the database.*/
 	@GetMapping("/Book/{id}")
 	public ResponseEntity<Optional<Book>> getBookById(@PathVariable(value = "id") Integer bkid) {
 
@@ -47,37 +51,35 @@ public class BookController {
 		}
 		return ResponseEntity.ok().body(bk);
 	}
-	
+
+	/**This GetMapping method provides detail of an book with a particular book rating in the database.*/
 	@GetMapping("/Books/bkrating/{rating}")
-	public ResponseEntity<Optional<Book>> getBookByRating(@PathVariable(value = "rating") Float bkrating) {
+	public List<Book> getBookByRating(@PathVariable(value = "rating") Float bkrating) {
 
-		Optional<Book> bk = dao.findByBkrating(bkrating);
-
-		if (bk == null) {
-			return ResponseEntity.notFound().build();
-		}
-		return ResponseEntity.ok().body(bk);
+		return  dao.findByBkrating((Float) bkrating);
 	}
-	
+
+	/**This DeleteMapping method delete an book with a particular id in the database.*/
 	@DeleteMapping("/Book/{id}")
 	public ResponseEntity<Book> deleteBook(@PathVariable(value="id") Integer bkid){
-		
+
 		Optional<Book> bbb=dao.findById(bkid);
 		if(bbb==null) {
 			return ResponseEntity.notFound().build();
 		}
 		((CrudRepository<Book, Integer>) dao).deleteById(bkid);
-		
+
 		return ResponseEntity.ok().build();
-     }
+	}
 	
+	/**This PutMapping method update the details of an book with a particular id in the database.*/
 	@PutMapping("/Book/{id}")
 	public ResponseEntity<Book> updateBook(@PathVariable(value="id") Integer bkid,@RequestBody Book book){
 		Optional<Book> bbb=dao.findById(bkid);
-		
+
 		if(bbb==null) 
 		{	return ResponseEntity.notFound().build();   }
-			
+
 		book.setBkname(book.getBkname());
 		book.setBkrating(book.getBkrating());
 		book.setPrice(book.getPrice());
@@ -85,40 +87,34 @@ public class BookController {
 		Book updateBook=dao.save(book);
 		return ResponseEntity.ok().body(updateBook);
 	}
-	
-	// Searching books by author age
+
+	/**This GetMapping method provides detail of an books with a particular author age in the database.*/
 	@GetMapping("/Books/Author-age/{age}")
 	public List<Book> getBooksByAuthorAge(@PathVariable("age") Integer age){
 		return dao.findByAuthorAge(age);
 	}
-	
-	//Searching books by author name
+
+	/**This GetMapping method provides detail of an books with a particular author name in the database.*/
 	@GetMapping("/Books/Author-name/{name}")
 	public List<Book> getBooksByAuthorName(@PathVariable("name") String name){
 		return dao.findByAuthorAuname(name);
 	}
-	
-	//Searching books by author id
+
+	/**This GetMapping method provides detail of an book with a particular author id in the database.*/
 	@GetMapping("/Books/Author-id/{id}")
 	public List<Book> getBooksByAuthorId(@PathVariable("id")Integer id){
-			return dao.findByAuthorAuid(id);
-		}
-		
-		//Searching books by author rating
+		return dao.findByAuthorAuid(id);
+	}
+
+	/**This GetMapping method provides detail of an book with a particular author rating in the database.*/
 	@GetMapping("/Books/Author-rating/{rating}")
 	public List<Book> getBooksByAuthorRating(@PathVariable("rating")Float rating){
-			return dao.findByAuthorAurating(rating);
-		}
-	
-	@GetMapping("/Books/{price}/Author/{aurating}")
-	public List<Book> getBookPriceLessThanAndAuthorRatingGreaterThan(@PathVariable("price")Integer price,@PathVariable("aurating")Float aurating){
-	return dao.findByPriceLessThanAndAuthorAuratingGreaterThan(price, aurating);
+		return dao.findByAuthorAurating(rating);
 	}
-	
-//	@GetMapping("/Books/{price}/Author/{aurating}")
-//	public List<Book> getAllBooksUnderPriceAndAboveAuthorRating(@PathVariable("price")Integer price,@PathVariable("aurating")Float aurating){
-//		return dao.findAllBooks(price, aurating);
-//	}
-	
-	
+
+	/**This GetMapping method provides detail of an book with book price less than and author rating greater than  in the database.*/
+	@GetMapping("/Book/{price}/Author/{aurating}")
+	public List<Book> getBookPriceLessThanAndAuthorRatingGreaterThan(@PathVariable("price")Integer price,@PathVariable("aurating")Float aurating){
+		return dao.findByPriceLessThanAndAuthorAuratingGreaterThan(price, aurating);
+	}
 }
